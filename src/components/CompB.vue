@@ -1,7 +1,7 @@
 <template>
   <div class="comp-a">
     <div class="message">
-      {{ sharedState.message }}
+      {{ message }}
     </div>
 
     <button type="button" @click="setNewMessageValue">Change message</button>
@@ -10,18 +10,17 @@
 </template>
 
 <script>
-import store from '../store';
+import { message, setMessageAction } from '../store'
 
 export default {
-  data() {
-    return {
-      sharedState: store.state
+  setup() {
+    const setNewMessageValue = () => {
+      setMessageAction('Bar')
     }
-  },
 
-  methods: {
-    setNewMessageValue() {
-      store.setMessageAction('Bar')
+    return {
+      message,
+      setNewMessageValue
     }
   }
   
